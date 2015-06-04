@@ -1,0 +1,4 @@
+# Agar.IO
+Agar.IO game for mobile devices
+
+DO NOT USE SOURCECODE UNLESS YOU HAVE PERMISSIONS TO DO SO BY US!
