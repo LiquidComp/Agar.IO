@@ -6,28 +6,38 @@ public var foodParent : Transform;
 public var minPosition : Vector2;
 public var maxPosition : Vector2;
 
-private var foodColor;
+private var foodColors : Color[];
 private var foodRotate : Vector2;
 private var foodGameObject : GameObject[];
+
+
 
 function Start () {
 
 	foodGameObject = new GameObject[foodGameObjectAmount];
+	foodColors = new Color[7];
+	foodColors[0]= Color.blue;
+    foodColors[1]= Color.red;
+    foodColors[2]= Color.green;
+    foodColors[3]= Color.yellow;
+    foodColors[4]= Color.cyan;
+    foodColors[5]= Color.magenta;
+    foodColors[6]= Color(0.2,0.2,0.2,1);
+		
 	for (var i = 0; i < foodGameObject.Length; i++) {
     	    var go = GameObject();
         	var randomPosition = Vector2(Random.Range(minPosition.x, maxPosition.x), Random.Range(minPosition.y, maxPosition.y));
         	var randomRotation = Vector2(Random.Range(0, 360), Random.Range(0, 360));
+        	var colorNum = Random.Range(0, foodColors.Length);
         	go.transform.localScale = Vector3(0.1,0.1,0.1);
          	go.AddComponent.<SpriteRenderer>().sprite = foodSprite;
         	go.GetComponent.<Renderer>().sortingLayerName = "Foreground";
 		 	go.GetComponent.<Renderer>().sortingOrder = 2;
 			go.name = "Food " + i;
 		 	go.transform.parent = foodParent;
-			go.GetComponent.<Renderer>().material.color = Color.red;
+			go.GetComponent.<Renderer>().material.color = foodColors[colorNum];
 			go.transform.position = randomPosition;
 			go.transform.position.z = 2.0;
-			// Deze man doet heel erg geak. Ik snap niet waarom die hem samendrukt. Kiek ff of jou dat wel lukt.
-			go.transform.localRotation = Quaternion.AngleAxis(35.0, Vector2.up);
          	foodGameObject[i] = go;
 			yield WaitForSeconds(0.5);
 		}
