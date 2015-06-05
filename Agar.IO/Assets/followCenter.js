@@ -15,8 +15,14 @@
  
  function LateUpdate()
  {
- 
         thisTransform.position.x = Mathf.Lerp( thisTransform.position.x, centerBlock.position.x + xOffset, Time.deltaTime * smoothTime);
  
         thisTransform.position.y = Mathf.Lerp( thisTransform.position.y, centerBlock.position.y + yOffset, Time.deltaTime * smoothTime);
  }
+ 
+function OnCollisionEnter2D(coll: Collision2D) {
+Debug.Log("done");	
+if (coll.gameObject.tag == "food")
+	Destroy(coll.gameObject);
+//		Debug.Log("done");
+}
