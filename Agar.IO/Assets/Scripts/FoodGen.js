@@ -40,10 +40,7 @@ function Start () {
 			go.GetComponent.<Renderer>().material.color = foodColors[colorNum];
 			go.transform.position = randomPosition;
 			go.transform.position.z = 2.0;
-<<<<<<< HEAD
 			go.transform.tag = "food";
-=======
->>>>>>> 14967bcf391ce8b235d19641fe0703acb953e7bf
          	foodGameObject[i] = go;
 			yield WaitForSeconds(0.5);
 		}
