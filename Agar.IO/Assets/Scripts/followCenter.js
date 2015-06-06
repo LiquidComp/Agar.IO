@@ -22,7 +22,7 @@ function Update()
   
 function LateUpdate()
  {
- 		var scale = mass/400;
+ 		var scale = mass/800;
  		transform.localScale = Vector3(scale, scale, 3.0);
  
         thisTransform.position.x = Mathf.Lerp( thisTransform.position.x, centerBlock.position.x + xOffset, Time.deltaTime * smoothTime);
