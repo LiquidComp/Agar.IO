@@ -66,13 +66,11 @@ function Start () {
 }
 
 function Update () {
-
 }
  
  
  function ShowHideIndicators(show : boolean) {
      for (var i = 0; i < foodGameObject.Length; i++) {
          foodGameObject[i].GetComponent.<Renderer>().enabled = show;
-         //foodGameObject[i].transform.position = home;
      }
  }
