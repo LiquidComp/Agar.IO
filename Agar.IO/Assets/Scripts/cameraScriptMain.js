@@ -1,6 +1,6 @@
 ﻿#pragma strict
 private var mousePosition : Vector3;
-public var moveSpeed = 0.1f;
+public var moveSpeed = 0.02f;
 public var Mass = 20.0f;
 
 function Start () {
