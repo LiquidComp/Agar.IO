@@ -12,7 +12,8 @@
  
 // FoodGen
 public var foodGameObjectAmount : int;
-public var foodSprite : Sprite;
+public var foodSpritePenta : Sprite;
+public var foodSpriteHexa : Sprite;
 public var foodParent : Transform;
 public var minPosition : Vector2;
 public var maxPosition : Vector2;
@@ -96,13 +97,17 @@ function Decay() {
 function FoodGen() {
 		for (; i < foodGameObject.Length;) {
     	    var go = GameObject();
+    	    var ran = Random.Range(0.0, 1.0);
         	var randomPosition = Vector2(Random.Range(minPosition.x, maxPosition.x), Random.Range(minPosition.y, maxPosition.y));
-        	var randomRotation = Vector2(Random.Range(0, 360), Random.Range(0, 360));
         	var colorNum = Random.Range(0, foodColors.Length);
         	go.transform.localScale = Vector3(0.1,0.1,0.1);
         	go.AddComponent.<PolygonCollider2D>();
         	go.AddComponent.<Rigidbody2D>().gravityScale = 0.0;
-         	go.AddComponent.<SpriteRenderer>().sprite = foodSprite;
+        	if (ran <= 0.5){ 
+        		go.AddComponent.<SpriteRenderer>().sprite = foodSpritePenta;
+        	} else {
+        		go.AddComponent.<SpriteRenderer>().sprite = foodSpriteHexa;
+        	}
         	go.GetComponent.<Renderer>().sortingLayerName = "Foreground";
 		 	go.GetComponent.<Renderer>().sortingOrder = 2;
 			go.name = "Food " + i;
@@ -112,8 +117,8 @@ function FoodGen() {
 			go.transform.position.z = 2.0;
 			go.transform.tag = "food";
          	foodGameObject[i] = go;
-         	Debug.Log(i);
+         	Debug.Log(ran);
          	i++;
-			yield WaitForSeconds(0.1);
+			yield WaitForSeconds(0.5);
 		}
 }
