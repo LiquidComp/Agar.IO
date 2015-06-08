@@ -66,9 +66,8 @@ function Update()
 function LateUpdate()
  {
  		// Mass
- 		var scale = Mathf.Sqrt(mass/20000);
- 		var camScale = scale*0.9 *100;
- 		change = camScale - cam.orthographicSize;
+ 		var scale = (Mathf.Sqrt(mass/75000))/2+0.005;
+ 		var camScale = scale*0.75*200;
 		cam.orthographicSize = camScale;
  		
  		
@@ -76,13 +75,21 @@ function LateUpdate()
  		transform.localScale = Vector3(scale, scale, 3.0);
         thisTransform.position.x = Mathf.Lerp( thisTransform.position.x, centerBlock.position.x + xOffset, Time.deltaTime * smoothTime);
         thisTransform.position.y = Mathf.Lerp( thisTransform.position.y, centerBlock.position.y + yOffset, Time.deltaTime * smoothTime);
+ 
+
  }
- // Eating
+	   // Eating
 function OnCollisionEnter2D(coll: Collision2D) {
 if (coll.gameObject.tag == "food")
 	Destroy(coll.gameObject);
 	mass += 1;
 	i += -1;
+}
+//decay
+function Decay() {
+	if(WaitForSeconds(2)){
+		mass += -0.001*mass;
+	}
 }
 
 //foodgen
