@@ -9,6 +9,7 @@
 // Mass
  public var mass : float;
  public var cam : Camera;
+ var targetObj: Transform;
  
 // FoodGen
 public var foodGameObjectAmount : int;
@@ -29,6 +30,12 @@ function Start()
  		// Movement
         thisTransform = transform;
         
+        //Mass
+        var scale = (Mathf.Sqrt(mass)/300)/4+0.01;
+ 		var camScale = scale*0.5*200+1;
+		cam.orthographicSize = camScale;
+		transform.localScale = Vector3(scale, scale, 3.0);
+                
         //FoodGen
        	foodGameObject = new GameObject[foodGameObjectAmount];
 		foodColors = new Color32[25];
@@ -67,13 +74,15 @@ function Update()
 function LateUpdate()
  {
  		// Mass
- 		var scale = (Mathf.Sqrt(mass/75000))/2+0.005;
- 		var camScale = scale*0.75*200;
-		cam.orthographicSize = camScale;
+	var targetScript: cameraScriptMain = targetObj.GetComponent(cameraScriptMain);
+	targetScript.moveSpeed = 0.05;
+	var scale = (Mathf.Sqrt(mass)/300)/4+0.01;
+ 	var camScale = scale*0.5*200+1;
+	cam.orthographicSize = camScale;
+	transform.localScale = Vector3(scale, scale, 3.0);
  		
  		
  		// Movement
- 		transform.localScale = Vector3(scale, scale, 3.0);
         thisTransform.position.x = Mathf.Lerp( thisTransform.position.x, centerBlock.position.x + xOffset, Time.deltaTime * smoothTime);
         thisTransform.position.y = Mathf.Lerp( thisTransform.position.y, centerBlock.position.y + yOffset, Time.deltaTime * smoothTime);
  
@@ -85,6 +94,9 @@ if (coll.gameObject.tag == "food")
 	Destroy(coll.gameObject);
 	mass += 1;
 	i += -1;
+	
+	//Mass
+
 }
 //decay
 function Decay() {
