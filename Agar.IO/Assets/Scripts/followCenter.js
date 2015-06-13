@@ -1,4 +1,6 @@
-﻿// Movement
+﻿#pragma strict
+
+// Movement
  private var thisTransform : Transform;
  private var velocity : Vector2;
  var centerBlock : Transform;
@@ -68,7 +70,9 @@ function Start()
  }
 function Update()
  {
-		FoodGen();	
+		FoodGen();
+		var axis = CrossPlatformInputManager.GetAxis("Horizontal");
+		Debug.Log(axis);	
  }
   
 function LateUpdate()
