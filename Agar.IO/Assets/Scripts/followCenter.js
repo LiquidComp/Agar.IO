@@ -71,8 +71,7 @@ function Start()
 function Update()
  {
 		FoodGen();
-		var axis = CrossPlatformInputManager.GetAxis("Horizontal");
-		Debug.Log(axis);	
+	
  }
   
 function LateUpdate()
