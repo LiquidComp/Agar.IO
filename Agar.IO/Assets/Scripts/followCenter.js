@@ -129,6 +129,7 @@ function FoodGen() {
 			go.transform.position.z = 2.0;
 			go.transform.tag = "food";
          	foodGameObject[i] = go;
+         	Debug.Log(ran);
          	i++;
 			yield WaitForSeconds(0.5);
 		}
