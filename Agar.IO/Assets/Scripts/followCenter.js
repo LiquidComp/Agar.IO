@@ -1,6 +1,4 @@
-﻿#pragma strict
-
-// Movement
+﻿// Movement
  private var thisTransform : Transform;
  private var velocity : Vector2;
  var centerBlock : Transform;
@@ -70,8 +68,12 @@ function Start()
  }
 function Update()
  {
+<<<<<<< HEAD
 		FoodGen();
 	
+=======
+		FoodGen();	
+>>>>>>> 08fd77bb961e8602ce2e7a8c9f2642d16d6d4e81
  }
   
 function LateUpdate()
@@ -132,6 +134,7 @@ function FoodGen() {
 			go.transform.position.z = 2.0;
 			go.transform.tag = "food";
          	foodGameObject[i] = go;
+         	Debug.Log(ran);
          	i++;
 			yield WaitForSeconds(0.5);
 		}
